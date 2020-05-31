@@ -28,15 +28,13 @@
 	function message($message, $values)
 	{
 		$i = 0;
-		echo var_dump(strpos($message, "$"));
-		echo $message."\n";
-		$message = substr_replace($message, $values[$i], strpos($message, "$"), strlen($values[$i]));
-		// while(strpos($message, "$")){
-			// $i++;
-		// }
-		echo $message."\n";
+		$message = explode("$", $message);
+		while($i < count($values)){
+			$message[$i] = $message[$i]." ".$values[$i];  
+			$i++;
+		}
 
-		return $message;
+		return implode(" ", $message);
 	}
 	
 	function readCsv($filename="", $columns, $message)
@@ -48,7 +46,6 @@
 		  while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
 		    $row++;
 		    for ($c=0; $c < count($columns); $c++){
-		    	// echo $data[$columns[$c]]."\n";
 		    	array_push($values, $data[$columns[$c]]);
 		  	}
 		  	message($message, $values);
