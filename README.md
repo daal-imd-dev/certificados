@@ -1,0 +1,1 @@
+$ php main.php -t "file do cer" -f "palestras.csv" -cname 0 -cemail 4 -chour 5 -message "confirmamos que 0 participou de 5 com 5 horas"
