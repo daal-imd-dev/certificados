@@ -1,1 +1,1 @@
-$ php main.php -t "file do cer" -f "palestras.csv" -cname 0 -cemail 4 -chour 5 -message "confirmamos que 0 participou de 5 com 5 horas"
+$ php main.php -t "template.jpg" -f "palestras.csv" -corder 035  -m "Certificamos para os devidos fins que $ ministrou o minicurso "$", realizado em 19 de novembro de 2019, com a carga horária de $, sob organização do Diretório Acadêmico Ada Lovelace. "
