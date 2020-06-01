@@ -1,4 +1,4 @@
-#Gerador de certificado
+# Gerador de certificado
 
 Script feito para automatizar a geração dos certificados dos eventos feitos pelo DAAL.
 
