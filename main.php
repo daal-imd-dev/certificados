@@ -12,12 +12,10 @@
 			$csv_path = $argv[$i+1];
 		elseif($argv[$i] == "-corder") 
 			$columns = $argv[$i+1];
-		elseif($argv[$i] == "-p") 
-			echo "position";
 		elseif($argv[$i] == "-m") 
 			$GLOBALS['message'] = $argv[$i+1];
 		elseif($argv[$i] == "-d") 
-			echo "destino output";
+			$GLOBALS['destine_path'] = $argv[$i+1];
 		elseif($argv[$i] == "-w") 
 			$GLOBALS['w'] = $argv[$i+1];
 		elseif($argv[$i] == "-h") 
@@ -43,7 +41,7 @@
 		return implode("", $message);
 	}
 	
-	function makePdf($message=''){
+	function makePdf($message='', $new_file_name=''){
 		$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 		$pdf->setPrintHeader(false);
 		$pdf->setPrintFooter(false);
@@ -52,12 +50,11 @@
 		$pdf->AddPage('LANDSCAPE', 'P', 'A4');
 		$pdf->Image('template.jpg', 0, 0, 400, 300, 'JPG', '', '', true, 200, '', false, false, 0, false, false, true);
 		$pdf->writeHTMLCell($GLOBALS['w'], $GLOBALS['h'], $GLOBALS['x'], $GLOBALS['y'], $message);
-		$pdf->Output(dirname(__FILE__).'/example.pdf', 'F');
+		$pdf->Output($GLOBALS['destine_path'].'/'.$new_file_name.'.pdf', 'F');
 	}
 
 	function readCsv($filename="", $columns)
 	{
-		//https://stackoverflow.com/questions/9139202/how-to-parse-a-csv-file-using-php
 		$row = 1;
 		$values = array();
 		if (($handle = fopen($filename, "r")) !== FALSE) {
@@ -66,7 +63,7 @@
 		    for ($c=0; $c < count($columns); $c++){
 		    	array_push($values, $data[$columns[$c]]);
 		  	}
-		  	makePdf(message($values));
+		  	makePdf(message($values), str_replace(".csv", "",$filename)."_".$row);
 			$values = array();
 		  }
 		  fclose($handle);
