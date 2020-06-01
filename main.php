@@ -2,8 +2,6 @@
 	
 	require_once('TCPDF/tcpdf.php');
 	
-	global $message;
-	//global = 	$columns;
 	$columns = [];
 
 	for ($i = 0; $i < count($argv); $i++) 
@@ -17,18 +15,27 @@
 		elseif($argv[$i] == "-p") 
 			echo "position";
 		elseif($argv[$i] == "-m") 
-			$message = $argv[$i+1];
+			$GLOBALS['message'] = $argv[$i+1];
 		elseif($argv[$i] == "-d") 
 			echo "destino output";
+		elseif($argv[$i] == "-w") 
+			$GLOBALS['w'] = $argv[$i+1];
+		elseif($argv[$i] == "-h") 
+			$GLOBALS['h'] = $argv[$i+1];
+		elseif($argv[$i] == "-x") 
+			$GLOBALS['x'] = $argv[$i+1];
+		elseif($argv[$i] == "-y") 
+			$GLOBALS['y'] = $argv[$i+1];
 	}
+
 
 	$columns = array_map('intval', str_split($columns));
 
 
-	function message($message, $values)
+	function message($values)
 	{
 		$i = 0;
-		$message = explode("$", $message);
+		$message = explode("$", $GLOBALS['message']);
 		while($i < count($values)){
 			$message[$i] = $message[$i]." ".$values[$i];  
 			$i++;
@@ -45,12 +52,12 @@
 		$pdf->SetAutoPageBreak(false, 0);
 		$pdf->AddPage('LANDSCAPE', 'P', 'A4');
 		$pdf->Image('template.jpg', 0, 0, 400, 300, 'JPG', '', '', true, 200, '', false, false, 0, false, false, true);
-		$html = '<span style="background-color:yellow;color:blue;padding: 800px;">&nbsp;'.$message.'2&nbsp;</span>';
-		$pdf->writeHTML($html, true, false, true, false, '');
+		$html = '<span style="color:#555;font-size: 20px;text-align: justify;">&nbsp;'.$GLOBALS['message'].'2&nbsp;</span>';
+		$pdf->writeHTMLCell($GLOBALS['w'], $GLOBALS['h'], $GLOBALS['x'], $GLOBALS['y'], $html);
 		$pdf->Output(dirname(__FILE__).'/example.pdf', 'F');
 	}
 
-	function readCsv($filename="", $columns, $message)
+	function readCsv($filename="", $columns)
 	{
 		//https://stackoverflow.com/questions/9139202/how-to-parse-a-csv-file-using-php
 		$row = 1;
@@ -61,7 +68,7 @@
 		    for ($c=0; $c < count($columns); $c++){
 		    	array_push($values, $data[$columns[$c]]);
 		  	}
-		  	makePdf(message($message, $values));
+		  	makePdf(message($values));
 			$values = array();
 		  }
 		  fclose($handle);
@@ -70,7 +77,7 @@
 
 
 
-	readCsv($csv_path, $columns, $message);
+	readCsv($csv_path, $columns);
 
 
 

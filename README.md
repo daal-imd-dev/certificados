@@ -1,1 +1,1 @@
-$ php main.php -t "template.jpg" -f "palestras.csv" -corder 035  -m "Certificamos para os devidos fins que $ ministrou o minicurso $, realizado em 19 de novembro de 2019, com a carga horária de $, sob organização do Diretório Acadêmico Ada Lovelace. "
+$ php main.php -t "template.jpg" -f "palestras.csv" -corder 035  -m "Certificamos para os devidos fins que $ ministrou o minicurso $, realizado em 19 de novembro de 2019, com a carga horária de $, sob organização do Diretório Acadêmico Ada Lovelace. " -w 150 -h 300  -x 130 -y 60
