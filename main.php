@@ -37,11 +37,10 @@
 		$i = 0;
 		$message = explode("$", $GLOBALS['message']);
 		while($i < count($values)){
-			$message[$i] = $message[$i]." ".$values[$i];  
+			$message[$i] = $message[$i].$values[$i];  
 			$i++;
 		}
-
-		return implode(" ", $message);
+		return implode("", $message);
 	}
 	
 	function makePdf($message=''){
@@ -52,8 +51,7 @@
 		$pdf->SetAutoPageBreak(false, 0);
 		$pdf->AddPage('LANDSCAPE', 'P', 'A4');
 		$pdf->Image('template.jpg', 0, 0, 400, 300, 'JPG', '', '', true, 200, '', false, false, 0, false, false, true);
-		$html = '<span style="color:#555;font-size: 20px;text-align: justify;">&nbsp;'.$GLOBALS['message'].'2&nbsp;</span>';
-		$pdf->writeHTMLCell($GLOBALS['w'], $GLOBALS['h'], $GLOBALS['x'], $GLOBALS['y'], $html);
+		$pdf->writeHTMLCell($GLOBALS['w'], $GLOBALS['h'], $GLOBALS['x'], $GLOBALS['y'], $message);
 		$pdf->Output(dirname(__FILE__).'/example.pdf', 'F');
 	}
 
@@ -74,8 +72,6 @@
 		  fclose($handle);
 		}
 	}
-
-
 
 	readCsv($csv_path, $columns);
 
