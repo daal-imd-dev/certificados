@@ -7,7 +7,7 @@
 	for ($i = 0; $i < count($argv); $i++) 
 	{ 
 		if($argv[$i] == "-t") 
-			$template_path = $argv[$i+1];
+			$GLOBALS['template'] = $argv[$i+1];
 		elseif($argv[$i] == "-f") 
 			$csv_path = $argv[$i+1];
 		elseif($argv[$i] == "-corder") 
@@ -24,6 +24,8 @@
 			$GLOBALS['x'] = $argv[$i+1];
 		elseif($argv[$i] == "-y") 
 			$GLOBALS['y'] = $argv[$i+1];
+		elseif($argv[$i] == "-o") 
+			$GLOBALS['o'] = intval($argv[$i+1]);
 	}
 
 
@@ -48,7 +50,7 @@
 		$pdf->SetMargins(0, 0, 0, true);
 		$pdf->SetAutoPageBreak(false, 0);
 		$pdf->AddPage('LANDSCAPE', 'P', 'A4');
-		$pdf->Image('template.jpg', 0, 0, 400, 300, 'JPG', '', '', true, 200, '', false, false, 0, false, false, true);
+		$pdf->Image($GLOBALS['template'], 0, 0, 400, 300, 'JPG', '', '', true, 200, '', false, false, 0, false, false, true);
 		$pdf->writeHTMLCell($GLOBALS['w'], $GLOBALS['h'], $GLOBALS['x'], $GLOBALS['y'], $message);
 		$pdf->Output($GLOBALS['destine_path'].'/'.$new_file_name.'.pdf', 'F');
 	}
@@ -63,7 +65,7 @@
 		    for ($c=0; $c < count($columns); $c++){
 		    	array_push($values, $data[$columns[$c]]);
 		  	}
-		  	makePdf(message($values), str_replace(".csv", "",$filename)."_".$row);
+		  	makePdf(message($values), $data[$GLOBALS['o']]);
 			$values = array();
 		  }
 		  fclose($handle);
