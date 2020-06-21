@@ -2,10 +2,8 @@
 	
 	require_once('TCPDF/tcpdf.php');
 	
-
 	function readParams($argv){
-		for ($i = 0; $i < count($argv); $i++) 
-		{ 
+		for ($i = 0; $i < count($argv); $i++){ 
 			if($argv[$i] == "-t") 
 				define('TEMPLATES', $argv[$i+1]);
 			elseif($argv[$i] == "-f") 
@@ -29,18 +27,17 @@
 			elseif($argv[$i] == "-n") 
 				define('NAME', intval($argv[$i+1]));
 		}
-
 	}
 
-
-	function message($values)
-	{
+	function message($values){
 		$i = 0;
 		$message = explode("$", MESSAGE);
+		
 		while($i < count($values)){
 			$message[$i] = $message[$i].$values[$i];  
 			$i++;
 		}
+
 		return implode("", $message);
 	}
 	
@@ -53,29 +50,25 @@
 		$pdf->AddPage('LANDSCAPE', 'P', 'A4');
 		$pdf->Image($template, 0, 0, 400, 300, 'JPG', '', '', true, 200, '', false, false, 0, false, false, true);
 		$pdf->writeHTMLCell(W, H, X, Y, $message);
-		$pdf->Output(DESTINE.'/'.$file_name.'.pdf', 'F');
+		$pdf->Output(DESTINE."/".$file_name.".pdf", 'F');
 	}
 
-	function readCsv()
-	{
-
-		$values = array();
+	function readCsv(){
+		$content = array();
 		$columns = array_map('intval', str_split(COLUMNS));
 		$csvs = explode(",", CSVS);
 		$templates = explode(",", TEMPLATES);
 
-		foreach ($csvs as $key => $csv) {
-			if (($handle = fopen(trim($csv), "r")) !== FALSE) {
-			  while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+		foreach ($csvs as $key => $csv){
+			if (($handle = fopen(trim($csv), "r")) !== FALSE){
+			  while (($data = fgetcsv($handle, 1000, ",")) !== FALSE){
 			 
 			    for ($c=0; $c < count($columns); $c++)
-			    	array_push($values, $data[$columns[$c]]);
+			    	array_push($content, $data[$columns[$c]]);
 			  
 			    $file_name = $data[EMAIL]."#".$data[NAME];
-			  
-			  	makePdf(message($values), $file_name, trim($templates[$key]));
-
-				$values = array();
+			  	makePdf(message($content), $file_name, trim($templates[$key]));
+				$content = array();
 			  }
 			  fclose($handle);
 			}
