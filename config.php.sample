@@ -3,8 +3,8 @@
 	require __DIR__.'/vendor/autoload.php';
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\SMTP;	
-	
-	define('SENDER_EMAIL', "a@a.com");
+
+	define('SENDER_EMAIL', "daal@imd.ufrn.br");
 	define('SENDER_PASS', "1111");
 
 	$mail = new PHPMailer();
@@ -12,12 +12,11 @@
 	// Settings
 	$mail->IsSMTP();
 	$mail->CharSet = 'UTF-8';
+	$mail->Host       = "mail.example.com";
+	$mail->SMTPDebug  = 0;
+	$mail->SMTPAuth   = true;
+	$mail->Port       = 25;
+	$mail->Username   = SENDER_EMAIL;
+	$mail->Password   = SENDER_PASS;
 
-	$mail->Host       = "mail.example.com"; // SMTP server example
-	$mail->SMTPDebug  = 0;                     // enables SMTP debug information (for testing)
-	$mail->SMTPAuth   = true;                  // enable SMTP authentication
-	$mail->Port       = 25;                    // set the SMTP port for the GMAIL server
-	$mail->Username   = SENDER_EMAIL; // SMTP account username example
-	$mail->Password   = SENDER_PASS;        // SMTP account password example
-
-	$mail->isHTML(true);                                  // Set email format to HTML
+	$mail->isHTML(true);

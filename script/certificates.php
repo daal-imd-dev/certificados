@@ -23,9 +23,13 @@
 			elseif($argv[$i] == "-y") 
 				define('Y', $argv[$i+1]);
 			elseif($argv[$i] == "-e") 
-				define('EMAIL', intval($argv[$i+1]));
+				define('EMAIL_COL', intval($argv[$i+1]));
 			elseif($argv[$i] == "-n") 
-				define('NAME', intval($argv[$i+1]));
+				define('NAME_COL', intval($argv[$i+1]));
+			elseif($argv[$i] == "-em") 
+				define('EMAIL_TITLE', $argv[$i+1]);
+			elseif($argv[$i] == "-et") 
+				define('EMAIL_TEMPLATE', $argv[$i+1]);
 		}
 	}
 
@@ -66,7 +70,7 @@
 			    for ($c=0; $c < count($columns); $c++)
 			    	array_push($content, $data[$columns[$c]]);
 			  
-			    $file_name = $data[EMAIL]."#".$data[NAME];
+			    $file_name = $data[EMAIL_COL]."#".$data[NAME_COL];
 			  	makePdf(message($content), $file_name, trim($templates[$key]));
 				$content = array();
 			  }

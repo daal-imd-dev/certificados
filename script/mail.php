@@ -6,16 +6,16 @@
 		return $files;
 	}
 
-	function send_emails(){
+	function send_emails($from="", $title="", $body_file=""){
 		$files = get_files();
 		$email = explode("#", $files[0]);
 		$email = $email[0];
 		
 		global $mail;
 		
-		$mail->Subject = 'Here is the subject';
-		$mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-		$mail->AltBody = 'This is the body in plain text for non-HTML mail';
+		$mail->Subject = $title;
+		$mail->Body    = file_get_contents($body_file);
+		$mail->SetFrom($from);
 
 		foreach ($files as $file) {
 			$file_name = $file;
@@ -34,7 +34,8 @@
 				$email = $current_email;
 				$mail->ClearAllRecipients(); 
 				$mail->clearAttachments();
-				$mail->addAddress($email, 'Joe User');		
+				// $mail->addAddress($email, 'Joe User');		
+				$mail->addAddress(test_email);		
 				$mail->addAttachment($file_name, $new_file_name);    
 			}	
 		}

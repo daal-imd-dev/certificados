@@ -6,5 +6,5 @@
 
 	readParams($argv);
 	readCsv();
-	send_emails();
+	send_emails(SENDER_EMAIL, EMAIL_TITLE, EMAIL_TEMPLATE);
 	
