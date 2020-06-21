@@ -7,13 +7,13 @@
 		for ($i = 0; $i < count($argv); $i++) 
 		{ 
 			if($argv[$i] == "-t") 
-				$GLOBALS['template'] = explode(",", $argv[$i+1]);
+				define('TEMPLATES', $argv[$i+1]);
 			elseif($argv[$i] == "-f") 
-				$GLOBALS['csv_path'] = explode(",", $argv[$i+1]);
+				define('CSVS', $argv[$i+1]);
 			elseif($argv[$i] == "-corder") 
-				$GLOBALS['columns'] = $argv[$i+1];
+				define('COLUMNS', $argv[$i+1]);
 			elseif($argv[$i] == "-m") 
-				$GLOBALS['message'] = file_get_contents($argv[$i+1]);
+				define('MESSAGE', file_get_contents($argv[$i+1]));
 			elseif($argv[$i] == "-d") 
 				define('DESTINE', $argv[$i+1]);
 			elseif($argv[$i] == "-w") 
@@ -30,14 +30,13 @@
 				define('NAME', intval($argv[$i+1]));
 		}
 
-		$GLOBALS['columns'] = array_map('intval', str_split($GLOBALS['columns']));
 	}
 
 
 	function message($values)
 	{
 		$i = 0;
-		$message = explode("$", $GLOBALS['message']);
+		$message = explode("$", MESSAGE);
 		while($i < count($values)){
 			$message[$i] = $message[$i].$values[$i];  
 			$i++;
@@ -61,16 +60,21 @@
 	{
 
 		$values = array();
-		foreach ($GLOBALS['csv_path'] as $key => $csv) {
+		$columns = array_map('intval', str_split(COLUMNS));
+		$csvs = explode(",", CSVS);
+		$templates = explode(",", TEMPLATES);
+
+		foreach ($csvs as $key => $csv) {
 			if (($handle = fopen(trim($csv), "r")) !== FALSE) {
 			  while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
 			 
-			    for ($c=0; $c < count($GLOBALS['columns']); $c++)
-			    	array_push($values, $data[$GLOBALS['columns'][$c]]);
+			    for ($c=0; $c < count($columns); $c++)
+			    	array_push($values, $data[$columns[$c]]);
+			  
+			    $file_name = $data[EMAIL]."#".$data[NAME];
+			  
+			  	makePdf(message($values), $file_name, trim($templates[$key]));
 
-			  	$template = trim($GLOBALS['template'][$key]);
-
-			  	makePdf(message($values), $data[EMAIL]."#".$data[NAME], $template);
 				$values = array();
 			  }
 			  fclose($handle);
