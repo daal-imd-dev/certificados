@@ -16,4 +16,4 @@ Script feito para automatizar a geração dos certificados dos eventos feitos pe
 
 ### Exemplo
 
-`$ php main.php -t "dia_19.jpg" -f "dia_19.csv" -corder 0412  -m "<p style=\"color:#555;font-size: 20px;text-align: left; line-height: 150%;\">Certificamos para os devidos fins que <span style=\"font-weight: bold;\"> $ </span> participou $ <span style=\"font-weight: bold;\">\"$\"</span>, realizado em 19 de novembro de 2019, com a carga horária de <span style=\"font-weight: bold;\"> $</span>, sob organização do Diretório Acadêmico Ada Lovelace.</p>" -w 140 -h 300  -x 130 -y 50 -d "/home/moita/projetos/daal/arquivos/dia_19" -o 3`
+`$ php index.php -t "assets/dia_18.jpg, assets/dia_19.jpg" -f "assets/dia_18.csv, assets/dia_19.csv" -corder 0412  -m "assets/message.txt" -w 140 -h 300  -x 130 -y 50 -d "/home/moita/projetos/daal/arquivos/" -e 3 -n 1`
