@@ -13,9 +13,9 @@
 		
 		global $mail;
 		
-		// $mail->Subject = 'Here is the subject';
-		// $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-		// $mail->AltBody = 'This is the body in plain text for non-HTML mail 
+		$mail->Subject = 'Here is the subject';
+		$mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+		$mail->AltBody = 'This is the body in plain text for non-HTML mail';
 
 		foreach ($files as $file) {
 			$file_name = $file;
