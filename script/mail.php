@@ -35,7 +35,7 @@
 				$mail->ClearAllRecipients(); 
 				$mail->clearAttachments();
 				// $mail->addAddress($email, 'Joe User');		
-				$mail->addAddress(test_email);		
+				$mail->addAddress(TEST_EMAIL);		
 				$mail->addAttachment($file_name, $new_file_name);    
 			}	
 		}
