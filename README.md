@@ -16,4 +16,4 @@ Script feito para automatizar a geração dos certificados dos eventos feitos pe
 
 ### Exemplo
 
-`$ php index.php -t "assets/dia_18.jpg, assets/dia_19.jpg" -f "assets/dia_18.csv, assets/dia_19.csv" -corder 0412  -m "assets/message.txt" -w 140 -h 300  -x 130 -y 50 -d "/home/moita/projetos/daal/arquivos/" -e 3 -n 1`
+`$ php index.php -t "assets/dia18.jpg, assets/dia19.jpg" -f "assets/dia18.csv, assets/dia19.csv" -corder 0412  -m "assets/message.txt" -w 140 -h 300  -x 130 -y 50 -d "/home/moita/projetos/daal/arquivos/" -e 3 -n 1`
