@@ -4,6 +4,6 @@
         "phpmailer/phpmailer": "^6.1"
     },	
     "require-dev": {
-        "heroku/heroku-buildpack-php": "*",
+        "heroku/heroku-buildpack-php": "*"
     }
 }
