@@ -54,7 +54,6 @@
 		$pdf->AddPage('LANDSCAPE', 'P', 'A4');
 		$pdf->Image($template, 0, 0, 400, 300, 'JPG', '', '', true, 200, '', false, false, 0, false, false, true);
 		$pdf->writeHTMLCell(W, H, X, Y, $message);
-		ob_clean();
 		$pdf->Output(DESTINE."/".$file_name.".pdf", 'F');
 	}
 
