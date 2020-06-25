@@ -13,7 +13,7 @@
 			elseif($argv[$i] == "-m") 
 				define('MESSAGE', file_get_contents($argv[$i+1]));
 			elseif($argv[$i] == "-d") 
-				define('DESTINE', $argv[$i+1]);
+				define('DESTINE', $argv[$i+1]."/");
 			elseif($argv[$i] == "-w") 
 				define('W', $argv[$i+1]);
 			elseif($argv[$i] == "-h") 
@@ -54,7 +54,7 @@
 		$pdf->AddPage('LANDSCAPE', 'P', 'A4');
 		$pdf->Image($template, 0, 0, 400, 300, 'JPG', '', '', true, 200, '', false, false, 0, false, false, true);
 		$pdf->writeHTMLCell(W, H, X, Y, $message);
-		$pdf->Output(DESTINE."/".utf8_encode($file_name).".pdf", 'F');
+		$pdf->Output(DESTINE.utf8_encode($file_name).".pdf", 'F');
 	}
 
 	function readCsv(){

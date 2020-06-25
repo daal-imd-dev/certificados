@@ -25,7 +25,7 @@
 			// echo $email." - ".$file_name."\n";
 			
 			if ($email == $current_email){
-				$mail->addAttachment($file_name, $new_file_name);
+				$mail->addAttachment(DESTINE.$file_name, $new_file_name);
 				// echo "não mandou\n";   
 				continue; 
 			}else{
@@ -36,7 +36,7 @@
 				$mail->clearAttachments();
 				// $mail->addAddress($email, 'Joe User');		
 				$mail->addAddress(TEST_EMAIL);		
-				$mail->addAttachment($file_name, $new_file_name);    
+				$mail->addAttachment(DESTINE.$file_name, $new_file_name);    
 			}	
 		}
 	}
