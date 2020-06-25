@@ -16,6 +16,7 @@
 		$mail->Subject = $title;
 		$mail->Body    = file_get_contents($body_file);
 		$mail->SetFrom($from);
+		$Correo->Username = SENDER_EMAIL;
 
 		foreach ($files as $file) {
 			$file_name = $file;
