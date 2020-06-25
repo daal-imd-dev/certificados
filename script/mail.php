@@ -30,6 +30,7 @@
 				continue; 
 			}else{
 				// echo "mandou\n";
+				echo var_dump($mail);
 				$mail->send() ? "enviado" : $mail->ErrorInfo;		
 				$email = $current_email;
 				$mail->ClearAllRecipients(); 
