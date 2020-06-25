@@ -16,7 +16,7 @@
 		$mail->Subject = $title;
 		$mail->Body    = file_get_contents($body_file);
 		$mail->SetFrom($from);
-		$Correo->Username = SENDER_EMAIL;
+		$mail->Username = SENDER_EMAIL;
 
 		foreach ($files as $file) {
 			$file_name = $file;
@@ -31,7 +31,6 @@
 				continue; 
 			}else{
 				// echo "mandou\n";
-				echo var_dump($mail);
 				$mail->send() ? "enviado" : $mail->ErrorInfo;		
 				$email = $current_email;
 				$mail->ClearAllRecipients(); 
@@ -41,5 +40,23 @@
 				$mail->addAttachment(DESTINE.$file_name, $new_file_name);    
 			}	
 		}
+	}
+
+
+	function send_emails_debug($from="", $title="", $body_file=""){
+		$files = get_files();
+		$email = explode("#",$files[0]);
+		$email = $email[0];
+		
+		global $mail;
+		
+		$mail->Subject = $title;
+		$mail->Body    = file_get_contents($body_file);
+		$mail->SetFrom($from);
+		$mail->Username = SENDER_EMAIL;
+		$mail->addAddress(TEST_EMAIL);
+		$mail->addAttachment(DESTINE.$file_name, $new_file_name);
+		echo var_dump($mail);
+		$mail->send() ? "enviado" : $mail->ErrorInfo;
 	}
 
