@@ -8,7 +8,7 @@
 
 	function send_emails($from="", $title="", $body_file=""){
 		$files = get_files();
-		$email = explode("#", $files[0]);
+		$email = explode("#",$files[0]);
 		$email = $email[0];
 		
 		global $mail;
@@ -18,7 +18,9 @@
 		$mail->SetFrom($from);
 
 		foreach ($files as $file) {
-			$file_name = $file;
+			echo $file."\n";
+			$file_name = utf8_decode($file);
+			echo utf8_decode($file)."\n";
 			$file = explode("#", $file);
 			$current_email = $file[0];
 			$new_file_name = $file[1]; 
