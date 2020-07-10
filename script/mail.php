@@ -22,14 +22,10 @@
 			$file = explode("#", $file);
 			$current_email = $file[0];
 			$new_file_name = $file[1]; 
-			// echo $email." - ".$file_name."\n";
-			
 			if ($email == $current_email){
 				$mail->addAttachment($file_name, $new_file_name);
-				// echo "não mandou\n";   
 				continue; 
 			}else{
-				// echo "mandou\n";
 				$mail->send();		
 				$email = $current_email;
 				$mail->ClearAllRecipients(); 
