@@ -27,10 +27,10 @@
 			
 			if ($email == $current_email){
 				$mail->addAttachment(DESTINE.$file_name, $new_file_name);
-				// echo "não mandou\n";   
+				echo "não mandou\n";   
 				continue; 
 			}else{
-				// echo "mandou\n";
+				echo "mandou\n";
 				$mail->send() ? "enviado" : $mail->ErrorInfo;		
 				$email = $current_email;
 				$mail->ClearAllRecipients(); 
