@@ -22,16 +22,13 @@
 			$file_name = $file;
 			$file = explode("#", $file);
 			$current_email = $file[0];
-			$new_file_name = utf8_decode($file[1]); 
-			// echo $email." - ".$file_name."\n";
-			
+
+			$new_file_name = $file[1]; 
 			if ($email == $current_email){
-				$mail->addAttachment(DESTINE.$file_name, $new_file_name);
-				echo "não mandou\n";   
+				$mail->addAttachment($file_name, $new_file_name);
 				continue; 
 			}else{
-				echo "mandou\n";
-				$mail->send() ? "enviado" : $mail->ErrorInfo;		
+				$mail->send();		
 				$email = $current_email;
 				$mail->ClearAllRecipients(); 
 				$mail->clearAttachments();
