@@ -29,8 +29,6 @@
 
 			echo ">> e: ".$email." - ".$current_email."\n";
 			if ($email != $current_email){
-				$mail->addAttachment(DESTINE.$file_name, $new_file_name);
-				$mail->addAddress(TEST_EMAIL);		
 				$mail->send();		
 				$mail->ClearAllRecipients(); 
 				$mail->clearAttachments();
@@ -40,6 +38,18 @@
 			}else{
 				$mail->addAttachment(DESTINE.$file_name, $new_file_name);
 				continue; 
+			}
+
+			if ($email == $current_email){
+				$mail->addAttachment($file_name, $new_file_name);
+				continue; 
+			}else{
+				$mail->send();		
+				$email = $current_email;
+				$mail->ClearAllRecipients(); 
+				$mail->clearAttachments();
+				$mail->addAddress(TEST_EMAIL);		
+				$mail->addAttachment($file_name, $new_file_name);    
 			}
 		}
 	}
