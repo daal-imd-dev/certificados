@@ -36,6 +36,7 @@
 				echo ">>>>>>>>>>>>> mandou\n";	
 				$mail->addAddress(TEST_EMAIL);		
 				$mail->addAttachment(DESTINE.$file_name, $new_file_name);    
+				echo ">>>>>>>>>>>>> nao mandou"." f:".$file_name." n: ".$new_file_name."\n";	
 			}
 		}
 	}
