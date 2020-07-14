@@ -27,7 +27,7 @@
 			$new_file_name = utf8_decode($file[1]);
 
 			$mail->addAttachment(DESTINE.$file_name, $new_file_name);
-			echo "e: ".$email." - ".$$current_email;
+			echo ">> e: ".$email." - ".$current_email."\n";
 			if ($email != $current_email){
 				$mail->addAddress(TEST_EMAIL);		
 				$mail->send();		
