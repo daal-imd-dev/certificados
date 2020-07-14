@@ -24,7 +24,8 @@
 			$file = explode("#", $file);
 			$current_email = $file[0];
 
-			$new_file_name = $file[1]; 
+			$new_file_name = utf8_encode($file[1]);
+			 
 			$mail->addAttachment(DESTINE.$file_name, $new_file_name);
 
 			if ($email != $current_email){
@@ -32,7 +33,7 @@
 				$mail->send();		
 				$mail->ClearAllRecipients(); 
 				$mail->clearAttachments();
-				
+
 				$email = $current_email;
 				echo ">>>>>>>>>>>>> mandou"." f:".$file_name." n: ".$new_file_name."\n";	
 			}else{
