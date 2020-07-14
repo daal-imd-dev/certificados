@@ -27,9 +27,9 @@
 
 			$new_file_name = utf8_decode($file[1]);
 
-			$mail->addAttachment(DESTINE.$file_name, $new_file_name);
 			echo ">> e: ".$email." - ".$current_email."\n";
 			if ($email != $current_email){
+				$mail->addAttachment(DESTINE.$file_name, $new_file_name);
 				$mail->addAddress(TEST_EMAIL);		
 				$mail->send();		
 				$mail->ClearAllRecipients(); 
@@ -38,6 +38,7 @@
 				$current_email = $email;
 				echo ">>>>>>>>>>>>> mandou"." f:".$file_name." n: ".$new_file_name."\n";	
 			}else{
+				$mail->addAttachment(DESTINE.$file_name, $new_file_name);
 				continue; 
 			}
 		}
