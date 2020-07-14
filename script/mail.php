@@ -19,24 +19,24 @@
 		$mail->Username = SENDER_EMAIL;
 
 		foreach ($files as $file) {
+
 			$file_name = $file;
 			$file = explode("#", $file);
 			$current_email = $file[0];
 
 			$new_file_name = $file[1]; 
-			if ($email == $current_email){
-				echo ">>>>>>>>>>>>> nao mandou"." f:".$file_name." n: ".$new_file_name."\n";	
-				$mail->addAttachment(DESTINE.$file_name, $new_file_name);
-				continue; 
-			}else{
+			$mail->addAttachment(DESTINE.$file_name, $new_file_name);
+
+			if ($email != $current_email){
+				$mail->addAddress(TEST_EMAIL);		
 				$mail->send();		
-				$email = $current_email;
 				$mail->ClearAllRecipients(); 
 				$mail->clearAttachments();
-				echo ">>>>>>>>>>>>> mandou\n";	
-				$mail->addAddress(TEST_EMAIL);		
-				$mail->addAttachment(DESTINE.$file_name, $new_file_name);    
-				echo ">>>>>>>>>>>>> nao mandou"." f:".$file_name." n: ".$new_file_name."\n";	
+				
+				$email = $current_email;
+				echo ">>>>>>>>>>>>> mandou"." f:".$file_name." n: ".$new_file_name."\n";	
+			}else{
+				continue; 
 			}
 		}
 	}
