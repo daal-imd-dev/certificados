@@ -29,16 +29,16 @@
 
 			echo ">> e: ".$email." - ".$current_email."\n";
 
+			$mail->addAttachment(DESTINE.$file_name, $new_file_name);
+			
 			if ($email == $current_email){
-				$mail->addAttachment(DESTINE.$file_name, $new_file_name);
 				continue; 
 			}else{
 				$mail->send();		
-				$email = $current_email;
+				$current_email = $email;
 				$mail->ClearAllRecipients(); 
 				$mail->clearAttachments();
 				$mail->addAddress(TEST_EMAIL);		
-				$mail->addAttachment(DESTINE.$file_name, $new_file_name);    
 			}
 		}
 	}
