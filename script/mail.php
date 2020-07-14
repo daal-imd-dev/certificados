@@ -28,20 +28,9 @@
 			$new_file_name = utf8_decode($file[1]);
 
 			echo ">> e: ".$email." - ".$current_email."\n";
-			if ($email != $current_email){
-				$mail->send();		
-				$mail->ClearAllRecipients(); 
-				$mail->clearAttachments();
-
-				$current_email = $email;
-				echo ">>>>>>>>>>>>> mandou"." f:".$file_name." n: ".$new_file_name."\n";	
-			}else{
-				$mail->addAttachment(DESTINE.$file_name, $new_file_name);
-				continue; 
-			}
 
 			if ($email == $current_email){
-				$mail->addAttachment($file_name, $new_file_name);
+				$mail->addAttachment(DESTINE.$file_name, $new_file_name);
 				continue; 
 			}else{
 				$mail->send();		
@@ -49,7 +38,7 @@
 				$mail->ClearAllRecipients(); 
 				$mail->clearAttachments();
 				$mail->addAddress(TEST_EMAIL);		
-				$mail->addAttachment($file_name, $new_file_name);    
+				$mail->addAttachment(DESTINE.$file_name, $new_file_name);    
 			}
 		}
 	}
