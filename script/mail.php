@@ -25,7 +25,7 @@
 
 			$new_file_name = $file[1]; 
 			if ($email == $current_email){
-				echo ">>>>>>>>>>>>> nao mandou"." f:".$file_name." n: ".$new_file_name ;	
+				echo ">>>>>>>>>>>>> nao mandou"." f:".$file_name." n: ".$new_file_name."\n";	
 				$mail->addAttachment($file_name, $new_file_name);
 				continue; 
 			}else{
@@ -33,7 +33,7 @@
 				$email = $current_email;
 				$mail->ClearAllRecipients(); 
 				$mail->clearAttachments();
-				echo ">>>>>>>>>>>>> mandou";	
+				echo ">>>>>>>>>>>>> mandou\n";	
 				$mail->addAddress(TEST_EMAIL);		
 				$mail->addAttachment(DESTINE.$file_name, $new_file_name);    
 			}
