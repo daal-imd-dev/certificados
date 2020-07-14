@@ -36,7 +36,8 @@
 				echo ">>>>>>>>>>>>> mandou";	
 				$mail->addAddress(TEST_EMAIL);		
 				$mail->addAttachment(DESTINE.$file_name, $new_file_name);    
-			}	
+			}
+			echo var_dump($mail);	
 		}
 	}
 
