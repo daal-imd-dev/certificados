@@ -35,10 +35,10 @@
 				continue; 
 			}else{
 				$mail->send();		
-				$current_email = $email;
+				$mail->addAddress(TEST_EMAIL);		
 				$mail->ClearAllRecipients(); 
 				$mail->clearAttachments();
-				$mail->addAddress(TEST_EMAIL);		
+				$current_email = $email;
 			}
 		}
 	}
