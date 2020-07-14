@@ -56,7 +56,7 @@
 		$mail->Username = SENDER_EMAIL;
 		$mail->addAddress(TEST_EMAIL);
 		// $mail->addAttachment(DESTINE.$file_name, $new_file_name);
-		// echo var_dump($mail);
+		echo var_dump($mail);
 		$mail->send() ? "enviado" : $mail->ErrorInfo;
 	}
 
