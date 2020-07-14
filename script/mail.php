@@ -26,7 +26,7 @@
 			$new_file_name = $file[1]; 
 			if ($email == $current_email){
 				echo ">>>>>>>>>>>>> nao mandou"." f:".$file_name." n: ".$new_file_name."\n";	
-				$mail->addAttachment($file_name, $new_file_name);
+				$mail->addAttachment(DESTINE.$file_name, $new_file_name);
 				continue; 
 			}else{
 				$mail->send();		
