@@ -24,8 +24,8 @@
 			$file = explode("#", $file);
 			$current_email = $file[0];
 
-			$new_file_name = utf8_encode($file[1]);
-			 
+			$new_file_name = utf8_decode($file[1]);
+
 			$mail->addAttachment(DESTINE.$file_name, $new_file_name);
 
 			if ($email != $current_email){
