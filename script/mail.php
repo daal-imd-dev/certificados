@@ -34,8 +34,8 @@
 			if ($email == $current_email){
 				continue; 
 			}else{
-				$mail->send();		
 				$mail->addAddress(TEST_EMAIL);		
+				$mail->send();		
 				$mail->ClearAllRecipients(); 
 				$mail->clearAttachments();
 				$current_email = $email;
