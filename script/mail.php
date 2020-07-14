@@ -10,6 +10,7 @@
 		$files = get_files();
 		$email = explode("#",$files[0]);
 		$email = $email[0];
+		$current_email = "";
 		
 		global $mail;
 		
@@ -22,7 +23,7 @@
 
 			$file_name = $file;
 			$file = explode("#", $file);
-			$current_email = $file[0];
+			$email = $file[0];
 
 			$new_file_name = utf8_decode($file[1]);
 
@@ -34,7 +35,7 @@
 				$mail->ClearAllRecipients(); 
 				$mail->clearAttachments();
 
-				$email = $current_email;
+				$current_email = $email;
 				echo ">>>>>>>>>>>>> mandou"." f:".$file_name." n: ".$new_file_name."\n";	
 			}else{
 				continue; 
