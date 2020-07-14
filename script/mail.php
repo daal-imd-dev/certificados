@@ -13,7 +13,7 @@
 		
 		global $mail;
 		
-		$mail->Subject = $title;
+		$mail->Subject = $title." - ".$email[0];
 		$mail->Body    = file_get_contents($body_file);
 		$mail->SetFrom($from);
 		$mail->Username = SENDER_EMAIL;
@@ -33,9 +33,7 @@
 				$email = $current_email;
 				$mail->ClearAllRecipients(); 
 				$mail->clearAttachments();
-				// $mail->addAddress($email, 'Joe User');	
 				echo ">>>>>>>>>>>>> mandou";	
-				echo var_dump($mail);
 				$mail->addAddress(TEST_EMAIL);		
 				$mail->addAttachment(DESTINE.$file_name, $new_file_name);    
 			}	
