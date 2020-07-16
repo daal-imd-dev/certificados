@@ -25,17 +25,17 @@
 			$file = explode("#", $file);
 			$email = $file[0];
 
-			$new_file_name = utf8_decode($file[1]);
-			echo utf8_encode($file[1])." - ".utf8_decode($file[1])."\n";
-			$mail->addAttachment(DESTINE.$file_name, $new_file_name);
-			// $next = next($files);
+			$new_file_name = $file[1];
 
-			// if (strpos($next, $email) === false OR $next === false){
-			// 	$mail->addAddress(TEST_EMAIL);		
-			// 	$mail->send();		
-			// 	$mail->ClearAllRecipients(); 
-			// 	$mail->clearAttachments();
-			// }
+			$mail->addAttachment(DESTINE.$file_name, $new_file_name);
+			$next = next($files);
+
+			if (strpos($next, $email) === false OR $next === false){
+				$mail->addAddress(TEST_EMAIL);		
+				$mail->send();		
+				$mail->ClearAllRecipients(); 
+				$mail->clearAttachments();
+			}
 		}
 	}
 
