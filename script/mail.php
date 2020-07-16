@@ -10,7 +10,6 @@
 		$files = get_files();
 		$email = explode("#",$files[0]);
 		$email = $email[0];
-		// $current_email = "";
 		
 		global $mail;
 		
@@ -27,21 +26,14 @@
 
 			$new_file_name = utf8_decode($file[1]);
 
-			// echo ">> e: ".$email." - ".$current_email."\n";
-			
-			if(strpos($files[$key+1], $email)){
+			$mail->addAttachment(DESTINE.$file_name, $new_file_name);
+			echo $key." - ".$files[$key+1]."/".$email;
+			if (!strpos($files[$key+1], $email){
+				$mail->addAddress(TEST_EMAIL);		
+				$mail->send();		
+				$mail->ClearAllRecipients(); 
+				$mail->clearAttachments();
 			}
-
-			// if ($email == $current_email){
-			// 	$mail->addAttachment(DESTINE.$file_name, $new_file_name);
-			// }else{
-			// 	$mail->addAddress(TEST_EMAIL);		
-			// 	$mail->send();		
-			// 	$email = $current_email;
-			// 	$mail->ClearAllRecipients(); 
-			// 	$mail->clearAttachments();
-			// 	// $mail->addAttachment(DESTINE.$file_name, $new_file_name);  
-			// }
 		}
 	}
 
