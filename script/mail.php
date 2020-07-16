@@ -8,18 +8,16 @@
 
 	function send_emails($from="", $title="", $body_file=""){
 
-		global $mail;
-
 		$files = get_files();
 		$file_name = explode("#",$files[0]);
 		$email = $file_name[0];
 		$next = current($files);
-		
+
+		global $mail;
 		$mail->Subject = $title." - ".$email[0];
 		$mail->Body    = file_get_contents($body_file);
 		$mail->SetFrom($from);
 		$mail->Username = SENDER_EMAIL;
-
 
 		foreach ($files as $file) {
 
@@ -28,15 +26,16 @@
 			$email = $file[0];
 
 			$new_file_name = utf8_decode($file[1]);
+			echo utf8_encode($file[1])." - ".utf8_decode($file[1])."\n";
 			$mail->addAttachment(DESTINE.$file_name, $new_file_name);
-			$next = next($files);
+			// $next = next($files);
 
-			if (strpos($next, $email) === false OR $next === false){
-				$mail->addAddress(TEST_EMAIL);		
-				$mail->send();		
-				$mail->ClearAllRecipients(); 
-				$mail->clearAttachments();
-			}
+			// if (strpos($next, $email) === false OR $next === false){
+			// 	$mail->addAddress(TEST_EMAIL);		
+			// 	$mail->send();		
+			// 	$mail->ClearAllRecipients(); 
+			// 	$mail->clearAttachments();
+			// }
 		}
 	}
 
