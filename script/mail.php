@@ -28,7 +28,7 @@
 
 			$mail->addAttachment(DESTINE.$file_name, $new_file_name);
 			
-			if ($key+1 < count($files)) $next = $key+1;
+			if ($key+1 <= count($files) - 1) $next = $key+1;
 
 			if (strpos($files[$next], $email) === FALSE){
 				$mail->addAddress(TEST_EMAIL);		
