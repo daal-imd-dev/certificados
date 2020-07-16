@@ -18,19 +18,16 @@
 		$mail->SetFrom($from);
 		$mail->Username = SENDER_EMAIL;
 
-		foreach ($files as $key => $file) {
+		foreach ($files as $file) {
 
 			$file_name = $file;
 			$file = explode("#", $file);
 			$email = $file[0];
 
 			$new_file_name = utf8_decode($file[1]);
-
 			$mail->addAttachment(DESTINE.$file_name, $new_file_name);
-			
-			if ($key+1 <= count($files) - 1) $next = $key+1;
 
-			if (strpos($files[$next], $email) === FALSE){
+			if (strpos(next($files), $email) === false OR next($files) === false){
 				$mail->addAddress(TEST_EMAIL);		
 				$mail->send();		
 				$mail->ClearAllRecipients(); 
