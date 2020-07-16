@@ -10,7 +10,7 @@
 		$files = get_files();
 		$email = explode("#",$files[0]);
 		$email = $email[0];
-		$current_email = "";
+		// $current_email = "";
 		
 		global $mail;
 		
@@ -19,7 +19,7 @@
 		$mail->SetFrom($from);
 		$mail->Username = SENDER_EMAIL;
 
-		foreach ($files as $file) {
+		foreach ($files as $key => $file) {
 
 			$file_name = $file;
 			$file = explode("#", $file);
@@ -29,16 +29,19 @@
 
 			// echo ">> e: ".$email." - ".$current_email."\n";
 			
-			if ($email == $current_email){
-				$mail->addAttachment(DESTINE.$file_name, $new_file_name);
-			}else{
-				$mail->addAddress(TEST_EMAIL);		
-				$mail->send();		
-				$email = $current_email;
-				$mail->ClearAllRecipients(); 
-				$mail->clearAttachments();
-				$mail->addAttachment(DESTINE.$file_name, $new_file_name);  
+			if(strpos($files[$key+1], $email)){
 			}
+
+			// if ($email == $current_email){
+			// 	$mail->addAttachment(DESTINE.$file_name, $new_file_name);
+			// }else{
+			// 	$mail->addAddress(TEST_EMAIL);		
+			// 	$mail->send();		
+			// 	$email = $current_email;
+			// 	$mail->ClearAllRecipients(); 
+			// 	$mail->clearAttachments();
+			// 	// $mail->addAttachment(DESTINE.$file_name, $new_file_name);  
+			// }
 		}
 	}
 
