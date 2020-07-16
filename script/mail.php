@@ -14,7 +14,6 @@
 		$next = current($files);
 
 		global $mail;
-		$mail->Subject = $title." - ".$email[0];
 		$mail->Body    = file_get_contents($body_file);
 		$mail->SetFrom($from);
 		$mail->Username = SENDER_EMAIL;
@@ -31,6 +30,7 @@
 			$next = next($files);
 
 			if (strpos($next, $email) === false OR $next === false){
+				$mail->Subject = $title." - ".$email;
 				$mail->addAddress(TEST_EMAIL);		
 				$mail->send();		
 				$mail->ClearAllRecipients(); 
