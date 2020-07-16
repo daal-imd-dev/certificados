@@ -31,7 +31,7 @@
 			$next = next($files);
 
 			if (strpos($next, $email) === false OR $next === false){
-				$mail->addAddress(TEST_EMAIL);		
+				$mail->addAddress($email);		
 				$mail->send();		
 				$mail->ClearAllRecipients(); 
 				$mail->clearAttachments();
