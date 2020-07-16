@@ -27,7 +27,7 @@
 			$new_file_name = utf8_decode($file[1]);
 
 			$mail->addAttachment(DESTINE.$file_name, $new_file_name);
-			echo $key." - ".$files[$key+1]."/".$email;
+			echo $key." - ".$files[$key+1]."/".$email."\n";
 
 			if (!strpos($files[$key+1], $email)){
 				$mail->addAddress(TEST_EMAIL);		
