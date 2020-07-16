@@ -32,7 +32,7 @@
 				define('EMAIL_TEMPLATE', $argv[$i+1]);
 		}
 
-		if(!isset(DESTINE)) define('DESTINE', getcwd()."/output");
+		if(!defined(DESTINE)) define('DESTINE', getcwd()."/output");
 		if(!is_dir(DESTINE)) mkdir(DESTINE);
 	}
 
