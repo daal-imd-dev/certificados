@@ -29,7 +29,6 @@
 
 			echo ">> e: ".$email." - ".$current_email."\n";
 
-			$mail->addAttachment(DESTINE.$file_name, $new_file_name);
 			
 			if ($email == $current_email){
 				continue; 

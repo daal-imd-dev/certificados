@@ -31,6 +31,9 @@
 			elseif($argv[$i] == "-et") 
 				define('EMAIL_TEMPLATE', $argv[$i+1]);
 		}
+
+		if(!isset(DESTINE)) define('DESTINE', getcwd()."/output");
+		if(!is_dir(DESTINE)) mkdir(DESTINE);
 	}
 
 	function message($values){
@@ -58,6 +61,7 @@
 	}
 
 	function readCsv(){
+
 		$content = array();
 		$columns = array_map('intval', str_split(COLUMNS));
 		$csvs = explode(",", CSVS);
