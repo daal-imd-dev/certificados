@@ -27,9 +27,11 @@
 			$new_file_name = utf8_decode($file[1]);
 
 			$mail->addAttachment(DESTINE.$file_name, $new_file_name);
-			echo $key." - ".$files[$key+1]."/".$email."\n";
+			echo $key." - ".strpos($files[$next], $email)."/".$files[$key+1]."/".$email."\n";
+		
+			$next = $key+1 <= count($files) ? $key+1 : $key;
 
-			if (strpos($files[$key+1], $email) === FALSE){
+			if (strpos($files[$next], $email) === FALSE){
 				$mail->addAddress(TEST_EMAIL);		
 				$mail->send();		
 				$mail->ClearAllRecipients(); 
