@@ -1,3 +1,5 @@
 /vendor
 /assets
 config.php 
+composer.lock
+Procfile
