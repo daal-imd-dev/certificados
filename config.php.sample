@@ -4,8 +4,8 @@
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\SMTP;	
 
-	define('SENDER_EMAIL', "daal@imd.ufrn.br");
-	define('SENDER_PASS', "1111");
+	define('SENDER_EMAIL', "example@gmail.com");
+	define('SENDER_PASS', "passwordexample");
 
 	$mail = new PHPMailer();
 
