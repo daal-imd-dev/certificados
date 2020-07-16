@@ -10,15 +10,16 @@
 
 		global $mail;
 
+		$files = get_files();
+		$file_name = explode("#",$files[0]);
+		$email = $file_name[0];
+		$next = current($files);
+		
 		$mail->Subject = $title." - ".$email[0];
 		$mail->Body    = file_get_contents($body_file);
 		$mail->SetFrom($from);
 		$mail->Username = SENDER_EMAIL;
 
-		$files = get_files();
-		$file_name = explode("#",$files[0]);
-		$email = $file_name[0];
-		$next = current($files);
 
 		foreach ($files as $file) {
 
