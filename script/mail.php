@@ -27,17 +27,18 @@
 
 			$new_file_name = utf8_decode($file[1]);
 
-			echo ">> e: ".$email." - ".$current_email."\n";
-
+			// echo ">> e: ".$email." - ".$current_email."\n";
 			
 			if ($email == $current_email){
+				$mail->addAttachment(DESTINE.$file_name, $new_file_name);
 				continue; 
 			}else{
-				$mail->addAddress(TEST_EMAIL);		
 				$mail->send();		
+				$email = $current_email;
 				$mail->ClearAllRecipients(); 
 				$mail->clearAttachments();
-				$current_email = $email;
+				$mail->addAddress(TEST_EMAIL);		
+				$mail->addAttachment(DESTINE.$file_name, $new_file_name);  
 			}
 		}
 	}
