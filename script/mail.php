@@ -29,7 +29,7 @@
 			$mail->addAttachment(DESTINE.$file_name, $new_file_name);
 			echo $key." - ".$files[$key+1]."/".$email."\n";
 
-			if (!strpos($files[$key+1], $email)){
+			if (strpos($files[$key+1], $email) === FALSE){
 				$mail->addAddress(TEST_EMAIL);		
 				$mail->send();		
 				$mail->ClearAllRecipients(); 
