@@ -31,7 +31,7 @@
 
 			$next = ($key+1 <= count($files)) ? $key+1 : $key;
 
-			echo $key." - ".strpos($files[$next], $email)."/".$files[$next]."/".$email."\n";
+			echo $key." - ".var_dump(strpos($files[$next], $email))."/".$files[$next]."/".$email."\n";
 
 			if (strpos($files[$next], $email) === FALSE){
 				$mail->addAddress(TEST_EMAIL);		
