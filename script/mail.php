@@ -10,7 +10,8 @@
 		$files = get_files();
 		$email = explode("#",$files[0]);
 		$email = $email[0];
-		
+		$next = current($files);
+
 		global $mail;
 		
 		$mail->Subject = $title." - ".$email[0];
@@ -26,8 +27,9 @@
 
 			$new_file_name = utf8_decode($file[1]);
 			$mail->addAttachment(DESTINE.$file_name, $new_file_name);
-
-			if (strpos(next($files), $email) === false OR next($files) === false){
+			$next = next($files);
+			
+			if (strpos($next, $email) === false OR $next === false){
 				$mail->addAddress(TEST_EMAIL);		
 				$mail->send();		
 				$mail->ClearAllRecipients(); 
